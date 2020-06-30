@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls'))
+    # leaving the below path empty removes the /blog/ heading
+    path('', include('blog.urls'))
 ]
