@@ -129,3 +129,6 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'blog-home'
+
+# name for ulr pattern
+LOGIN_URL = 'login'
