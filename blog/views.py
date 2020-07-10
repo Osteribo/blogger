@@ -44,14 +44,14 @@ class PostListView(ListView):
     context_object_name = 'posts'
     # orders the blogs newest to oldest
     ordering = ['-date_posted']
+    paginate_by = 3
    
-
 
 class PostDetailView(DetailView):
     model = Post
     
 
-class PostCreateView(LoginRequiredMixin,CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
 
