@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Post
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView, 
     DetailView, 
     CreateView,
     UpdateView,
-    DeleteView
+    DeleteView,
+    
 )
 
 
@@ -46,6 +48,22 @@ class PostListView(ListView):
     ordering = ['-date_posted']
     paginate_by = 3
    
+
+class UserPostListView(ListView):
+    model = Post
+    template_name = 'blog/user_post.html'   #  <app>/<model>_<viewtype>.html
+    context_object_name = 'posts'
+    # orders the blogs newest to oldest
+    paginate_by = 3
+
+    # filter the posts out by the author to see their posts
+    def get_queryset(self):
+        # get username. if there is none then 404
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        # return the list of posts by the user and order them
+        #  by newest to oldest
+        return Post.objects.filter(author=user).order_by('-date_posted')
+
 
 class PostDetailView(DetailView):
     model = Post
