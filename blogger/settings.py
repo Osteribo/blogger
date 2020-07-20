@@ -132,3 +132,13 @@ LOGIN_REDIRECT_URL = 'blog-home'
 
 # name for ulr pattern
 LOGIN_URL = 'login'
+
+# password reset relay
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER_NAME') # 'aoster123@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS') #'kuszkqirgqudxvky' 
+
+print(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
