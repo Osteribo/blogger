@@ -14,12 +14,14 @@ class Profile(models.Model):
     def __str__(self):
         return f' {self.user.username} Profile '
     
-    def save(self, *args, **kwargs):
-        # super() allows you to run parent request of same name
-        super().save(*args, **kwargs)
 
-        img = Image.open(self.image.path)
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+    # Commented out file resizing with pillow for S3 Bucket (would use a lambda function instead)
+    # def save(self, *args, **kwargs):
+    #     # super() allows you to run parent request of same name
+    #     super().save(*args, **kwargs)
+
+    #     img = Image.open(self.image.path)
+    #     if img.height > 300 or img.width > 300:
+    #         output_size = (300, 300)
+    #         img.thumbnail(output_size)
+    #         img.save(self.image.path)
